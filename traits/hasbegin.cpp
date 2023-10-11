@@ -7,8 +7,8 @@
 
 
 int main(){
-  std::cout << "int::size " << HasBeginT<int>::value << std::endl;
-  std::cout << "std::vector<int>::size: " << HasBeginT<std::vector<int>>::value << std::endl;
-  std::cout << "std::pair<int,int>::first: " << HasBeginT<std::pair<int,int>>::value << std::endl;
+  std::cout << "int: " << HasBeginT<int>::value << std::endl;
+  std::cout << "std::vector<int>: " << HasBeginT<std::vector<int>>::value << std::endl;
+  std::cout << "std::pair<int,int>: " << HasBeginT<std::pair<int,int>>::value << std::endl;
   return 0;
 }
