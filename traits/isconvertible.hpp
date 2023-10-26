@@ -12,11 +12,11 @@ private:
   // parameter, the compiler tries to substitute it and if the substitution fails, then the template choice is discarded.
   // Context (scope) specific template parameters F and T are introduced to make the SFINAE work. Otherwise if FROM and TO were used,
   // it would be a compilation error.
-  template<typename F, typename, typename = decltype(aux(std::declval<F>()))> 
+  template<typename F, typename = decltype(aux(std::declval<F>()))> 
   static std::true_type test(void*);
 
   // test() fallback
-  template<typename, typename>
+  template<typename>
   static std::false_type test (...);
 
 public:
@@ -27,7 +27,7 @@ template<typename FROM, typename TO>
 struct IsConvertibleT : IsConvertibleHelper<FROM,TO>::Type{};
 
 template<typename FROM, typename TO>
-using IsConvertible = typename IsConvertibleT<FROM,TO>::Type;
+using IsConvertible = typename IsConvertibleT<FROM,TO>::type;
 
 template<typename FROM, typename TO>
-constexpr bool isConvertible = IsConvertibleT<FROM,TO>::value;
+constexpr bool isConvertible = IsConvertible<FROM,TO>::value;
